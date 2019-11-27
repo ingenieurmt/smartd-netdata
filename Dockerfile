@@ -2,10 +2,11 @@ FROM alpine:latest
 RUN apk add --update --no-cache smartmontools
 
 COPY smartd.conf /etc/
+COPY entrypoint.sh /opt/
 
-USER root
+RUN chmod +x /opt/entrypoint.sh
 
-ENTRYPOINT ["/usr/sbin/smartd", "-n", "--quit=never", "--attributelog=/var/log/smartd"]
+ENTRYPOINT ["/opt/entrypoint.sh", "smartd", "-n", "--quit=never", "--attributelog=/var/log/smartd"]
 CMD ["--interval=10"]
 
 MAINTAINER ingenieurmt <matthew@thompsons.id.au>
