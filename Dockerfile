@@ -5,7 +5,7 @@ COPY smartd.conf /etc/
 
 USER root
 
-ENTRYPOINT ["/usr/sbin/smartd", "-n", "-q never", "--attributelog=/var/log/smartd"]
-CMD ["-i 10"]
+ENTRYPOINT ["/usr/sbin/smartd", "-n", "--quit=never", "--attributelog=/var/log/smartd"]
+CMD ["--interval=10"]
 
 MAINTAINER ingenieurmt <matthew@thompsons.id.au>
