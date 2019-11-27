@@ -1,8 +1,10 @@
-FROM alpine
+FROM alpine:latest
 RUN apk add --update --no-cache smartmontools
 
 ADD smartd.conf /etc/smartd.conf
 ADD entrypoint.sh /opt/entrypoint.sh
+
+USER root
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 
