@@ -1,8 +1,11 @@
 FROM alpine:latest
 RUN apk add --update --no-cache smartmontools
 
-ADD smartd.conf /etc/smartd.conf
+COPY smartd.conf /etc/
 
-ENTRYPOINT ["/usr/sbin/smartd", "-n", "-A /var/log/smartd/", "-i 10"]
+USER root
+
+ENTRYPOINT ["/usr/sbin/smartd", "-n"]
+CMD ["-A /var/log/smartd/", "-i 10"]
 
 MAINTAINER ingenieurmt <matthew@thompsons.id.au>
